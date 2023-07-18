@@ -1,24 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
+//import { StatusBar } from 'expo-status-bar';
+import { StatusBar } from 'react-native';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import SignIn from './src/pages/SignIn'
 import Navigator from './src/components/navbar/navigator'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import ChatIn from './src/pages/ChatIn';
+
+import { AuthProvider } from './src/contexts/AuthContext'
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    /*
-    <View style={styles.container}>
-      <Text>Projeto React Native!</Text>
-      <Image
-        style={styles.tinyLogo}
-        source={{
-          uri: 'https://reactnative.dev/img/tiny_logo.png',
-        }}
-      />
-      <StatusBar style="auto" />
-      <SignIn/>
-      <Navigator/>
-    </View>*/
-    <Navigator/>
+    
+    <SignIn></SignIn>
+
   );
 }
 
