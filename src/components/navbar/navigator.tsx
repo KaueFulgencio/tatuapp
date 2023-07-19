@@ -39,11 +39,6 @@ export default function Navigator() {
     
     <NavigationContainer>
       <Tab.Navigator>
-
-        <AirplaneOutline/>
-
-        <Ionicons name="md-checkmark-circle" size={32} color="green" />
-        
         <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarBadge: 3 }} />
         
         <Tab.Screen name="Settings" component={SettingsScreen} />

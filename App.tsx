@@ -1,26 +1,43 @@
+//import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import SignIn from './src/pages/SignIn'
 import Navigator from './src/components/navbar/navigator'
 
-export default function App() {
+import { NavigationContainer } from '@react-navigation/native'; 
+import { createStackNavigator } from '@react-navigation/stack';
+
+import ChatScreen from './src/components/ChatScreen';
+import ChatIn from './src/pages/ChatIn';
+
+import { AuthProvider } from './src/contexts/AuthContext'
+import WelcomeScreen from './src/components/WelcomeScreen';
+
+
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    /*
-    <View style={styles.container}>
-      <Text>Projeto React Native!</Text>
-      <Image
-        style={styles.tinyLogo}
-        source={{
-          uri: 'https://reactnative.dev/img/tiny_logo.png',
-        }}
-      />
-      <StatusBar style="auto" />
-      <SignIn/>
-      <Navigator/>
-    </View>*/
-    <Navigator/>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="WelcomeScreen">
+        <Stack.Screen
+          name="WelcomeScreen"
+          component={WelcomeScreen}
+          options={{ title: 'Bem-vindo' }}
+        />
+        <Stack.Screen
+          name="ChatScreen"
+          component={ChatScreen}
+          options={{ title: 'Conversas' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
