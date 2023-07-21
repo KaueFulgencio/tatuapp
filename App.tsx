@@ -5,18 +5,20 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import SignIn from './src/pages/SignIn'
 import Navigator from './src/components/navbar/navigator'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { NavigationContainer } from '@react-navigation/native'; 
-import { createStackNavigator } from '@react-navigation/stack';
-
-import ChatScreen from './src/components/ChatScreen';
 import ChatIn from './src/pages/ChatIn';
 
 import { AuthProvider } from './src/contexts/AuthContext'
+
+
+const Stack = createNativeStackNavigator();
+
+import { createStackNavigator } from '@react-navigation/stack';
+
+import ChatScreen from './src/components/ChatScreen';
 import WelcomeScreen from './src/components/WelcomeScreen';
-
-
-const Stack = createStackNavigator();
 
 const App = () => {
   return (
