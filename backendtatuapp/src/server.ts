@@ -20,5 +20,9 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
         message: 'Internal Server Error.'
     })
 })
+const now = new Date();
 
-app.listen(3333, () => console.log('Servidor Funcionando!'));
+app.listen(3333, () => {
+    const now = new Date().toLocaleString(); // Obtém a data e hora atual
+    console.log(`Servidor Funcionando! ${now}`);
+  });
