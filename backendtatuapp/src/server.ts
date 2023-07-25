@@ -23,6 +23,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 const now = new Date();
 
 app.listen(3333, () => {
-    const now = new Date().toLocaleString(); // Obtém a data e hora atual
+    const now = new Date().toLocaleString(); 
     console.log(`Servidor Funcionando! ${now}`);
   });

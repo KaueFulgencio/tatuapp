@@ -1,5 +1,3 @@
-
-
 generator client {
   provider = "prisma-client-js"
   engineType = "binary"
@@ -14,7 +12,7 @@ model User {
   id        String   @id @default(uuid())
   name      String
   email     String
-  telefone  String 
+  telefone  String
   password  String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -22,8 +20,17 @@ model User {
   messages_sent  Message[] @relation("UserToMessage")
   messages_received  Message[] @relation("RecipientToMessage")
 
-  //nome da tabela
-  @@map("users")
+  // Adicione a relação para os contatos
+  contatos   Contato[] @relation("UserToContato")
+}
+
+model Contato {
+  id        String   @id @default(uuid())
+  contato   String
+  telefone  String
+  userId    String  
+
+  user      User     @relation("UserToContato", fields: [userId], references: [id])
 }
 
 model Message {
@@ -36,6 +43,4 @@ model Message {
   
   recipient  User     @relation("RecipientToMessage", fields: [recipientId], references: [id])
   recipientId String
-//nome da tabela
-  @@map("messages")
 }
