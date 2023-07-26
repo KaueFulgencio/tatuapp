@@ -1,6 +1,6 @@
 import prismaClient from "../../prisma";
 //usado para comparar a senha digitado com a senha criptografada
-import {compare } from 'bcryptjs';
+import { compare } from 'bcryptjs';
 
 interface AuthRequest{
     email: string;

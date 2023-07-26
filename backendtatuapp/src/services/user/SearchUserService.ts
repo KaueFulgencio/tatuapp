@@ -14,7 +14,7 @@ class SearchUserService {
         },
       });
 
-      return user || null; // Tratamento para retornar null caso o usuário não seja encontrado
+      return user || null; 
     } catch (error) {
       console.error('Erro ao buscar usuário:', error);
       return null;
