@@ -5,6 +5,7 @@ import { SearchUserController }  from "./controllers/user/SearchUserController"
 import { AddContactController } from './controllers/user/AddContactController';
 import {ListContatosController} from './controllers/user/ListContatosController'
 import { MessageController } from './controllers/user/MessageController'
+import { ListMessagesController } from './controllers/user/ListMessagesController'
 
 const router = Router();
 
@@ -14,6 +15,7 @@ router.post('/contato', new AddContactController().handle)
 router.post('/enviamensagem', new MessageController().handle)
 router.get('/search', new SearchUserController().handle)
 router.get('/listcontatos', new ListContatosController().handle)
+router.get('/listmessages/:senderId/:recipientId', new ListMessagesController().handle);
 
 
 export { router };
