@@ -1,18 +1,19 @@
+// Service
 import prismaClient from "../../prisma";
 
-interface UserListMessagesRequest{
-    senderId: string;
-    recipientId: string;
+interface UserListMessagesRequest {
+  senderEmail: string;
+  recipientEmail: string;
 }
 
 const ListMessagesService = {
-  async execute({senderId, recipientId}: UserListMessagesRequest) {
+  async execute({ senderEmail, recipientEmail }: UserListMessagesRequest) {
     try {
       const messages = await prismaClient.message.findMany({
         where: {
           OR: [
-            { senderId: senderId, recipientId: recipientId },
-            { senderId: recipientId, recipientId: senderId },
+            { sender: { email: senderEmail }, recipient: { email: recipientEmail } },
+            { sender: { email: recipientEmail }, recipient: { email: senderEmail } },
           ],
         },
       });
@@ -25,4 +26,4 @@ const ListMessagesService = {
   },
 };
 
-export {ListMessagesService}
+export { ListMessagesService };

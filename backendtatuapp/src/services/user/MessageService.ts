@@ -1,20 +1,20 @@
-import prismaClient from '../../prisma'
+import prismaClient from '../../prisma';
 
-interface UserMessageRequest{
-    senderId: string;
-    recipientId: string;
-    content: string;
+interface UserMessageRequest {
+  senderEmail: string;
+  recipientEmail: string;
+  content: string;
 }
 
 const MessageService = {
-  async execute({senderId, recipientId, content}: UserMessageRequest) {
+  async execute({ senderEmail, recipientEmail, content }: UserMessageRequest) {
     try {
-      const senderExists = await prismaClient.user.findUnique({
-        where: { id: senderId },
+      const senderExists = await prismaClient.user.findFirst({
+        where: { email: senderEmail },
       });
 
-      const recipientExists = await prismaClient.user.findUnique({
-        where: { id: recipientId },
+      const recipientExists = await prismaClient.user.findFirst({
+        where: { email: recipientEmail },
       });
 
       if (!senderExists || !recipientExists) {
@@ -24,8 +24,8 @@ const MessageService = {
       const message = await prismaClient.message.create({
         data: {
           content,
-          senderId,
-          recipientId,
+          senderId: senderExists.id,
+          recipientId: recipientExists.id,
         },
       });
 

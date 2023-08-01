@@ -20,7 +20,6 @@ model User {
   messages_sent  Message[] @relation("UserToMessage")
   messages_received  Message[] @relation("RecipientToMessage")
 
-  // Adicione a relação para os contatos
   contatos   Contato[] @relation("UserToContato")
 }
 

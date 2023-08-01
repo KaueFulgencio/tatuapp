@@ -27,7 +27,7 @@ class AddContactService {
 
       return newContact;
     } catch (error) {
-      // Trata possíveis erros ou lança uma exceção para ser tratada no controller
+
       console.error("Erro ao adicionar contato:", error);
       throw new Error("Erro ao adicionar contato.");
     }

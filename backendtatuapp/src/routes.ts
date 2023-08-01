@@ -15,7 +15,8 @@ router.post('/contato', new AddContactController().handle)
 router.post('/enviamensagem', new MessageController().handle)
 router.get('/search', new SearchUserController().handle)
 router.get('/listcontatos', new ListContatosController().handle)
-router.get('/listmessages/:senderId/:recipientId', new ListMessagesController().handle);
+router.get('/listmessages/:senderEmail/:recipientEmail', new ListMessagesController().handle);
+
 
 
 export { router };
