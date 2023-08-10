@@ -24,10 +24,7 @@ class AuthUserService{
         if(!passwordMatch){
             throw new Error("Usuario ou senha incorretos!")
         }
-
-        
-
-        return { ok: true}
+        return { email, password}
     }
 }
 

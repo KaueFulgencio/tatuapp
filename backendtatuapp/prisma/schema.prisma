@@ -5,41 +5,45 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = env("DATABASE_URL")
 }
 
 model User {
-  id        String   @id @default(uuid())
-  name      String
-  email     String
-  telefone  String
-  password  String
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  telefone String
+  password String
+  emailVerificationCode String?
+  emailVerified Boolean @default(false)
+  emailVerificationToken String?
+  emailTokenExpiry DateTime?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  messages_sent  Message[] @relation("UserToMessage")
-  messages_received  Message[] @relation("RecipientToMessage")
+  messages_sent Message[] @relation("UserToMessage")
+  messages_received Message[] @relation("RecipientToMessage")
 
-  contatos   Contato[] @relation("UserToContato")
+  contatos Contato[] @relation("UserToContato")
 }
 
 model Contato {
-  id        String   @id @default(uuid())
-  contato   String
-  telefone  String
-  userId    String  
+  id String @id @default(uuid())
+  contato String
+  telefone String
+  userId String
 
-  user      User     @relation("UserToContato", fields: [userId], references: [id])
+  user User @relation("UserToContato", fields: [userId], references: [id])
 }
 
 model Message {
-  id         String   @id @default(uuid())
-  content    String
-  sent_at    DateTime @default(now())
-  
-  sender     User     @relation("UserToMessage", fields: [senderId], references: [id])
-  senderId   String
-  
-  recipient  User     @relation("RecipientToMessage", fields: [recipientId], references: [id])
+  id String @id @default(uuid())
+  content String
+  sent_at DateTime @default(now())
+
+  sender User @relation("UserToMessage", fields: [senderId], references: [id])
+  senderId String
+
+  recipient User @relation("RecipientToMessage", fields: [recipientId], references: [id])
   recipientId String
 }
